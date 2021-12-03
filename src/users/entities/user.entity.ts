@@ -52,10 +52,6 @@ export class User implements IUser {
   @Column()
   public password: string;
 
-
-
-
-
   @Exclude()
   @Column({
     nullable:true

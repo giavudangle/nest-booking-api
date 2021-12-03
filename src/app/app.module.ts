@@ -5,10 +5,8 @@ import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthenticationModule } from '../authentication/core/authentication.module';
-import { CategoriesModule } from '../categories/core/categories.module';
 import { DatabaseModule } from '../database/database.module';
 import { LocalFilesModule } from '../local-files/core/local-file.module';
-import { PostsModule } from '../posts/core/posts.module';
 import { PublicFileModule } from '../public-files/core/public-file.module';
 import { SeedingService } from '../seedings/seeding.service';
 import { Path } from '../shared/enums/path.enum';
@@ -45,11 +43,9 @@ import { AppService } from './app.service';
       rootPath: join(__dirname, '../../../public'),
     }),
     // Component modules
-    PostsModule,
     DatabaseModule,
     UserModule,
     AuthenticationModule,
-    CategoriesModule,
     LocalFilesModule,
     PublicFileModule
   ],

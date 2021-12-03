@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectEntityManager } from '@nestjs/typeorm';
 import { EntityManager } from 'typeorm';
-import { posts } from '../../data-seeding';
-import { Post as PostEntity } from '../posts/entities/post.entity';
 import { Seeding } from './entities/seeding.entity';
 
 @Injectable()
@@ -18,8 +16,8 @@ export class SeedingService {
         async (transcationalEntityManager) => {
           await Promise.all([
             await Promise.all(
-              posts.map(async (post) => {
-                transcationalEntityManager.save(PostEntity, post);
+              [].map(async (post) => {
+                //transcationalEntityManager.save(PostEntity, post);
               }),
             ),
             // Add more seeding entities here...
