@@ -5,7 +5,8 @@ const mockedUser: User = {
   email: 'daniel.dang@contemi.com',
   name: 'Daniel Dang',
   password: 'danielne',
-  reservations: []
+  reservations: [],
+  invoices: []
 };
 
 export default mockedUser;

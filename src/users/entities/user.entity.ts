@@ -8,6 +8,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Invoice } from '../../invoice/entities/invoice.entity';
 import { LocalFile } from '../../local-files/core/local-file.entity';
 import { Reservation } from '../../reservation/entities/reservation.entity';
 
@@ -68,5 +69,12 @@ export class User implements IUser {
   })
   @ApiProperty()
   reservations : Reservation[]
+
+  @OneToMany(() => Invoice,invoice => invoice.guest,{
+    cascade:true,
+    eager:true
+  })
+  @ApiProperty()
+  invoices : Invoice[]
 
 }
