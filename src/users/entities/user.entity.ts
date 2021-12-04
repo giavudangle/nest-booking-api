@@ -9,6 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { LocalFile } from '../../local-files/core/local-file.entity';
+import { Reservation } from '../../reservation/entities/reservation.entity';
 
 interface IUser {
   id: number;
@@ -34,6 +35,10 @@ export class User implements IUser {
   @Column({nullable:true})
   @ApiPropertyOptional()
   public phoneNumber?: string;
+
+  @Column({nullable:true})
+  @ApiPropertyOptional()
+  public address?: string;
   
   @JoinColumn({name:'avatar_id'})
   @OneToOne(
@@ -57,4 +62,11 @@ export class User implements IUser {
     nullable:true
   })
   public currentHashedRefreshToken?:string
+
+  @OneToMany(() => Reservation,reservation => reservation.guest,{
+    cascade:true
+  })
+  @ApiProperty()
+  reservations : Reservation[]
+
 }

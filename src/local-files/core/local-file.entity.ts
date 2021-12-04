@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('local_files')
+@Entity('local-files')
 export class LocalFile {
     @PrimaryGeneratedColumn()
     public id:number;

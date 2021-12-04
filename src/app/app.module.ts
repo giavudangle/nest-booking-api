@@ -5,9 +5,17 @@ import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthenticationModule } from '../authentication/core/authentication.module';
+import { CategoryModule } from '../category/category.module';
+import { CityModule } from '../city/city.module';
+import { CountryModule } from '../country/country.module';
 import { DatabaseModule } from '../database/database.module';
+import { HotelModule } from '../hotel/hotel.module';
 import { LocalFilesModule } from '../local-files/core/local-file.module';
 import { PublicFileModule } from '../public-files/core/public-file.module';
+import { ReservationModule } from '../reservation/reservation.module';
+import { RoomReservedModule } from '../room-reserved/room-reserved.module';
+import { RoomTypeModule } from '../room-type/room-type.module';
+import { RoomModule } from '../room/room.module';
 import { SeedingService } from '../seedings/seeding.service';
 import { Path } from '../shared/enums/path.enum';
 import { UserModule } from '../users/core/users.module';
@@ -47,7 +55,15 @@ import { AppService } from './app.service';
     UserModule,
     AuthenticationModule,
     LocalFilesModule,
-    PublicFileModule
+    PublicFileModule,
+    CategoryModule,
+    CityModule,
+    CountryModule,
+    HotelModule,
+    ReservationModule,
+    RoomTypeModule,
+    RoomModule,
+    RoomReservedModule
   ],
   // Controller
   controllers: [AppController],
