@@ -10,7 +10,7 @@ export class Category {
 
     @ApiProperty()
     @Column({
-        unique:false ,
+        unique:true ,
         name:'category_name' 
     })
     categoryName : string
