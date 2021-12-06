@@ -1,10 +1,11 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { City } from "../../city/entities/city.entity";
 
 @Entity('countries')
 export class Country {
     @PrimaryGeneratedColumn()
+    @ApiPropertyOptional()
     id: number;
 
     @ApiProperty()

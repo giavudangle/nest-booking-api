@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, ParseIntPipe } from '@nestjs/common';
+import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { CountryService } from './country.service';
 import { CreateCountryDto } from './dto/create-country.dto';
 import { UpdateCountryDto } from './dto/update-country.dto';
@@ -9,19 +9,22 @@ import { UpdateCountryDto } from './dto/update-country.dto';
 export class CountryController {
   constructor(private readonly countryService: CountryService) {}
 
+  @ApiCreatedResponse()
+  @HttpCode(201)
   @Post()
   create(@Body() createCountryDto: CreateCountryDto) {
     return this.countryService.create(createCountryDto);
   }
 
   @Get()
-  findAll() {
-    return this.countryService.findAll();
+  async findAll() {
+    return  await this.countryService.findAll();
   }
 
+  
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.countryService.findOne(+id);
+  async findOne(@Param('id',ParseIntPipe) id: number) {
+    return await this.countryService.findOne(id);
   }
 
   @Patch(':id')
