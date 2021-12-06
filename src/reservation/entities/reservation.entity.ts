@@ -1,9 +1,9 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 import { Invoice } from "../../invoice/entities/invoice.entity";
-import { RoomReserved } from "../../room-reserved/entities/room-reserved.entity";
 import { Room } from "../../room/entities/room.entity";
 import { User } from "../../users/entities/user.entity";
+import { RoomReserved } from "./room-reserved.entity";
 
 
 @Entity('reservations')

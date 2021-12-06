@@ -10,10 +10,10 @@ import { CityModule } from '../city/city.module';
 import { CountryModule } from '../country/country.module';
 import { DatabaseModule } from '../database/database.module';
 import { HotelModule } from '../hotel/hotel.module';
+import { InvoiceModule } from '../invoice/invoice.module';
 import { LocalFilesModule } from '../local-files/core/local-file.module';
 import { PublicFileModule } from '../public-files/core/public-file.module';
 import { ReservationModule } from '../reservation/reservation.module';
-import { RoomReservedModule } from '../room-reserved/room-reserved.module';
 import { RoomTypeModule } from '../room-type/room-type.module';
 import { RoomModule } from '../room/room.module';
 import { SeedingService } from '../seedings/seeding.service';
@@ -63,7 +63,7 @@ import { AppService } from './app.service';
     ReservationModule,
     RoomTypeModule,
     RoomModule,
-    RoomReservedModule
+    InvoiceModule
   ],
   // Controller
   controllers: [AppController],

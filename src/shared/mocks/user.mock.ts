@@ -6,7 +6,8 @@ const mockedUser: User = {
   name: 'Daniel Dang',
   password: 'danielne',
   reservations: [],
-  invoices: []
+  invoices: [],
+  avatarImageUrl:''
 };
 
 export default mockedUser;

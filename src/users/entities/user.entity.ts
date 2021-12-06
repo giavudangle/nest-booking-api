@@ -53,6 +53,13 @@ export class User implements IUser {
   @Column({ nullable: true,name:'avatar_id' })
   public avatarId?: number;
 
+
+  @Column({
+    name:'avatar_img_url',
+    nullable:true
+  })
+  avatarImageUrl : string
+
   @ApiProperty()
   @Exclude()
   @Column()
