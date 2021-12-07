@@ -12,10 +12,12 @@ import { CityModule } from '../city/city.module';
 import { CategoryModule } from '../category/category.module';
 import { Country } from '../country/entities/country.entity';
 import { CountryService } from '../country/country.service';
+import { CountryModule } from '../country/country.module';
 
 @Module({
   controllers: [HotelController],
-  providers: [HotelService,ConfigService,CategoryService,CityService,CountryService],
-  imports:[TypeOrmModule.forFeature([Hotel,Category,City,Country])]
+  providers: [ConfigService,CategoryService,CityService,HotelService],
+  imports:[TypeOrmModule.forFeature([Hotel,Category,City]),CityModule,CountryModule],
+  exports:[HotelService,TypeOrmModule.forFeature([Hotel,Category,City])]
 })
 export class HotelModule {}
