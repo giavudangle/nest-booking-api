@@ -18,7 +18,7 @@ export class Category {
     @ApiProperty()
     @OneToMany(() => Hotel,hotel => hotel.category,{
         cascade:['remove','update'],
-        eager:true
+        lazy:true
     }) 
     hotels: Hotel[]
 
