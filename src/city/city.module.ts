@@ -10,6 +10,7 @@ import { Country } from '../country/entities/country.entity';
 @Module({
   controllers: [CityController],
   providers: [CityService,CountryService],
-  imports:[CountryModule,TypeOrmModule.forFeature([City,Country])]
+  imports:[CountryModule,TypeOrmModule.forFeature([City,Country])],
+  exports:[CityService]
 })
 export class CityModule {}

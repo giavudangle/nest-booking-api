@@ -28,8 +28,8 @@ export class CityService {
     })
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} city`;
+  async findOne(id: number) {
+    return await this.cityRepository.findOne(id)
   }
 
   update(id: number, updateCityDto: UpdateCityDto) {
