@@ -1,17 +1,35 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, UseGuards, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { HotelService } from './hotel.service';
 import { CreateHotelDto } from './dto/create-hotel.dto';
 import { UpdateHotelDto } from './dto/update-hotel.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiConsumes, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAccessTokenAuthenticationGuard } from '../authentication/guards/jwt-access-token-authentication.guard';
+import { LocalFilesInterceptor } from '../shared/interceptors/local-file.interceptor';
+import { editFileName, imageFileFilter } from '../shared/utils/file-uploading.utils';
 
 @ApiTags('Hotel API')
 @Controller('hotel')
 export class HotelController {
   constructor(private readonly hotelService: HotelService) {}
 
+  @HttpCode(201)
+  @ApiConsumes('multipart/form-data')
+  @ApiCreatedResponse()
+  @ApiBadRequestResponse()
   @Post()
-  create(@Body() createHotelDto: CreateHotelDto) {
-    return this.hotelService.create(createHotelDto);
+  @UseGuards(JwtAccessTokenAuthenticationGuard)
+  @UseInterceptors(LocalFilesInterceptor({
+    fieldName:'image',
+    fileName: editFileName,
+    limits:{
+      fileSize:Math.pow(1024,2) // 10mb
+    },
+    fileFilter: imageFileFilter
+  }))
+  create(@Body() createHotelDto: CreateHotelDto, @UploadedFile() hotelImage : Express.Multer.File) {
+    const category = JSON.parse(createHotelDto.category as any)
+    const city = JSON.parse(createHotelDto.city as any)
+    return this.hotelService.create({...createHotelDto,category,city},hotelImage.path);
   }
 
   @Get()
