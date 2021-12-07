@@ -9,6 +9,7 @@ import { CategoryModule } from '../category/category.module';
 import { CityModule } from '../city/city.module';
 import { CountryModule } from '../country/country.module';
 import { DatabaseModule } from '../database/database.module';
+import { FacilityModule } from '../facility/facility.module';
 import { HotelModule } from '../hotel/hotel.module';
 import { InvoiceModule } from '../invoice/invoice.module';
 import { LocalFilesModule } from '../local-files/core/local-file.module';
@@ -63,7 +64,8 @@ import { AppService } from './app.service';
     ReservationModule,
     RoomTypeModule,
     RoomModule,
-    InvoiceModule
+    InvoiceModule,
+    FacilityModule
   ],
   // Controller
   controllers: [AppController],

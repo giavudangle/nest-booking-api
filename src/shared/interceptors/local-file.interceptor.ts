@@ -19,10 +19,6 @@ export function LocalFilesInterceptor(options : ILocalFilesInterceptorOptions) :
     class Interceptor implements NestInterceptor {
         localFilesInterceptor: NestInterceptor;
         constructor(configService : ConfigService){
-            // const filesDestination = configService.get('UPLOADED_FILES_DESTINATION')
-            // const destination = `${filesDestination}${options.path}`
-            console.log(configService.get('UPLOADED_FILES_DESTINATION'))
-
             const multerOptions : MulterOptions = {
                 storage:diskStorage({
                     destination:configService.get('UPLOADED_FILES_DESTINATION'),

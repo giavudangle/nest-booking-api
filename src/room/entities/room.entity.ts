@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Facility } from "../../facility/entities/facility.entity";
 import { Hotel } from "../../hotel/entities/hotel.entity";
 import { RoomReserved } from "../../reservation/entities/room-reserved.entity";
 import { RoomType } from "../../room-type/entities/room-type.entity";
@@ -45,4 +46,7 @@ export class Room {
         cascade:true
     })
     reservations : RoomReserved[]
+
+    @ManyToMany(() => Facility,facility => facility.hotels)
+    facilities : Facility[]
 }

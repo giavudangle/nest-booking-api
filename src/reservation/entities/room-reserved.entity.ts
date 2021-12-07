@@ -5,7 +5,7 @@ import { Room } from "../../room/entities/room.entity";
 
 
 @ApiTags('Room Reserved API')
-@Entity('room_to_reversed')
+@Entity('rooms-to-reverseds')
 export class RoomReserved {
     @PrimaryGeneratedColumn()
     id : number

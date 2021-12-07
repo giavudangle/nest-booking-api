@@ -9,7 +9,7 @@ export class RoomType {
 
     @Column({
         name:'type_name',
-        //unique:true
+        unique:true
     })
     roomTypeName : string
 
