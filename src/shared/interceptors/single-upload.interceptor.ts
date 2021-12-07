@@ -5,7 +5,7 @@ import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer
 import { diskStorage } from "multer";
 import { editFileName } from "../utils/file-uploading.utils";
 
-interface ILocalFilesInterceptorOptions {
+interface ISingleUploadFileInterceptor {
     fieldName: string;
     path?:string;
     limits: MulterOptions['limits'],
@@ -14,7 +14,7 @@ interface ILocalFilesInterceptorOptions {
     
 }
 
-export function LocalFilesInterceptor(options : ILocalFilesInterceptorOptions) : Type<NestInterceptor>{
+export function SingleUploadFileInterceptor(options : ISingleUploadFileInterceptor) : Type<NestInterceptor>{
     @Injectable()
     class Interceptor implements NestInterceptor {
         localFilesInterceptor: NestInterceptor;

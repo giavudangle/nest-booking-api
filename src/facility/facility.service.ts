@@ -26,6 +26,7 @@ export class FacilityService {
     return await this.facilityRepository.findOne(id)
   }
 
+
   update(id: number, updateFacilityDto: UpdateFacilityDto) {
     return `This action updates a #${id} facility`;
   }

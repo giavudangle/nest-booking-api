@@ -4,8 +4,8 @@ import { CreateHotelDto } from './dto/create-hotel.dto';
 import { UpdateHotelDto } from './dto/update-hotel.dto';
 import { ApiBadRequestResponse, ApiConsumes, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAccessTokenAuthenticationGuard } from '../authentication/guards/jwt-access-token-authentication.guard';
-import { LocalFilesInterceptor } from '../shared/interceptors/local-file.interceptor';
 import { editFileName, imageFileFilter } from '../shared/utils/file-uploading.utils';
+import { SingleUploadFileInterceptor } from '../shared/interceptors/single-upload.interceptor';
 
 @ApiTags('Hotel API')
 @Controller('hotel')
@@ -18,7 +18,7 @@ export class HotelController {
   @ApiBadRequestResponse()
   @Post()
   @UseGuards(JwtAccessTokenAuthenticationGuard)
-  @UseInterceptors(LocalFilesInterceptor({
+  @UseInterceptors(SingleUploadFileInterceptor({
     fieldName:'image',
     fileName: editFileName,
     limits:{

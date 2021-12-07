@@ -12,7 +12,7 @@ import {
 import { ApiConsumes, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAccessTokenAuthenticationGuard } from '../../authentication/guards/jwt-access-token-authentication.guard';
 import IRequestWithUser from '../../authentication/interfaces/request-with-user.interface';
-import {LocalFilesInterceptor} from '../../shared/interceptors/local-file.interceptor';
+import { SingleUploadFileInterceptor } from '../../shared/interceptors/single-upload.interceptor';
 import { editFileName, imageFileFilter } from '../../shared/utils/file-uploading.utils';
 import { UploadAvatarUserDto } from '../dtos/upload-avatar-user.dto';
 import { UserService } from './users.service';
@@ -30,7 +30,7 @@ export class UserController {
   @ApiConsumes('multipart/form-data')
   @UseGuards(JwtAccessTokenAuthenticationGuard)
 
-  @UseInterceptors(LocalFilesInterceptor({
+  @UseInterceptors(SingleUploadFileInterceptor({
     fieldName:'avatar',
     limits:{fileSize:Math.pow(1024,3)},
     fileFilter:imageFileFilter,

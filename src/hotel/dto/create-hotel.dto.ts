@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { IsNotEmpty, Max, Min } from "class-validator";
-import { CategoryViewModel } from "../../category/entities/category-view-model.entity";
+import { CategoryViewModel } from "../../category/vm/category.vm";
 import { Category } from "../../category/entities/category.entity";
 import { CityViewModel } from "../../city/entities/city-vm.entity";
 import { City } from "../../city/entities/city.entity";

@@ -1,16 +1,29 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, HttpCode, UseInterceptors, UploadedFiles } from '@nestjs/common';
 import { RoomService } from './room.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiConsumes, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAccessTokenAuthenticationGuard } from '../authentication/guards/jwt-access-token-authentication.guard';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('Room API')
 @Controller('room')
 export class RoomController {
   constructor(private readonly roomService: RoomService) {}
 
+
+  @UseGuards(JwtAccessTokenAuthenticationGuard)
+  @HttpCode(201)
+  @ApiCreatedResponse()
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileFieldsInterceptor([
+    { name: 'image', maxCount: 5 }, // Migrate to shared later.
+  ]))
   @Post()
-  create(@Body() createRoomDto: CreateRoomDto) {
+  create(@Body() createRoomDto: CreateRoomDto, @UploadedFiles() files :{
+    image? : Express.Multer.File
+  }) {
+    console.log(files)
     return this.roomService.create(createRoomDto);
   }
 
