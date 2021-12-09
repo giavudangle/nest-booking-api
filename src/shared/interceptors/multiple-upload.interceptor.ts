@@ -1,12 +1,12 @@
 import { Injectable, mixin, NestInterceptor, Type } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
+import { FileFieldsInterceptor, FileInterceptor } from "@nestjs/platform-express";
+import { MulterField, MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
 import { diskStorage } from "multer";
 import { editFileName } from "../utils/file-uploading.utils";
 
 interface IMultipleUploadFileInterceptor {
-    fieldName: string;
+    fieldName?: string;
     path?:string;
     limits: MulterOptions['limits'],
     fileFilter?:MulterOptions['fileFilter'];
@@ -14,10 +14,10 @@ interface IMultipleUploadFileInterceptor {
     
 }
 
-export function SingleUploadFileInterceptor(options : IMultipleUploadFileInterceptor) : Type<NestInterceptor>{
+export function MultipleUploadFileInterceptor(uploadFields : MulterField[],options : IMultipleUploadFileInterceptor) : Type<NestInterceptor>{
     @Injectable()
     class Interceptor implements NestInterceptor {
-        localFilesInterceptor: NestInterceptor;
+        multipleUploadInterceptor: NestInterceptor;
         constructor(configService : ConfigService){
             const multerOptions : MulterOptions = {
                 storage:diskStorage({
@@ -27,11 +27,11 @@ export function SingleUploadFileInterceptor(options : IMultipleUploadFileInterce
                 fileFilter:options.fileFilter,
                 limits:options.limits
             }
-            this.localFilesInterceptor = new (FileInterceptor(options.fieldName,multerOptions))
+            this.multipleUploadInterceptor = new (FileFieldsInterceptor(uploadFields,multerOptions))
         }
         intercept(...args:Parameters<NestInterceptor['intercept']>){
             
-            return this.localFilesInterceptor.intercept(...args)
+            return this.multipleUploadInterceptor.intercept(...args)
         }
     }
     return mixin(Interceptor)

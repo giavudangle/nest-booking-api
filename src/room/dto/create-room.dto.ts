@@ -7,42 +7,58 @@ import { string } from "@hapi/joi";
 
 export class CreateRoomDto {
     @ApiProperty({
-
+        example:'Deluxe Double Room'
     })
     roomName : string
 
     @ApiProperty({
-
+        example:'This spacious room features free Wi-Fi, a large flat-screen TV, ample bath area and city views from over-sized windows.'
     })
-    description : string
+    roomDescription : string
 
     @ApiProperty({
-
+        example:200
     })
     currentPrice : number
 
     @ApiProperty({
-
+        type: () => RoomTypeViewModel,
+        example: {
+            id: 9,
+            roomTypeName:'King'
+        }
     })
     roomType : RoomTypeViewModel
 
     @ApiProperty({
-
+        type: () => HotelViewModel,
+        example:{
+            id: 2,
+            hotelName: "Hotel Nikko Saigon",
+            imageUrl: `public\\assets\\images\\244689818_2890622494582274_3626192853862023410_n-5def.jpg`,
+            address: "235 Nguyen Van Cu Street, Quận 1, TP. Hồ Chí Minh",
+            description: "Hotel Nikko Saigon cũng có trung tâm dịch vụ doanh nhân và dịch vụ trợ giúp đặc biệt. Du khách có thể tận hưởng bể sục và nhiều lựa chọn dịch vụ spa tại khách sạn",
+            isActive: true
+        }
     })
     hotel:HotelViewModel
 
     @ApiProperty({
         type: () => FacilityViewModel,
-        isArray:true
+        isArray:true,
+        example:[
+            {
+                id :1,
+                facilityName: 'Swimming Pool'
+            },
+            {
+                id :2,
+                facilityName: 'Airport shuttle'
+            }
+        ]
     })
     facilities?: FacilityViewModel[]
 
-    @ApiProperty({
-        type: 'string',
-        format:'binary',
-        isArray:true
-    })
-    image:any
 
     
 }

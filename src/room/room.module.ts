@@ -21,11 +21,14 @@ import { CategoryModule } from '../category/category.module';
 import { CountryModule } from '../country/country.module';
 import { FacilityModule } from '../facility/facility.module';
 import { FacilityService } from '../facility/facility.service';
+import { ConfigService } from '@nestjs/config';
+import { LocalFilesService } from '../local-files/core/local-file.service';
+import { LocalFilesModule } from '../local-files/core/local-file.module';
 
 @Module({
-  imports:[FacilityModule,RoomTypeModule,HotelModule,CityModule,TypeOrmModule.forFeature([Room])],
+  imports:[FacilityModule,RoomTypeModule,HotelModule,CityModule,LocalFilesModule,TypeOrmModule.forFeature([Room])],
   controllers: [RoomController],
-  providers: [RoomService,RoomTypeService,HotelService,FacilityService,CategoryService],
+  providers: [ConfigService,RoomService,RoomTypeService,HotelService,FacilityService,CategoryService,LocalFilesService],
   exports:[RoomService,RoomTypeService,HotelService,CategoryService]
 })
 export class RoomModule {}

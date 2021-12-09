@@ -13,7 +13,6 @@ import { FacilityModule } from '../facility/facility.module';
 import { HotelModule } from '../hotel/hotel.module';
 import { InvoiceModule } from '../invoice/invoice.module';
 import { LocalFilesModule } from '../local-files/core/local-file.module';
-import { PublicFileModule } from '../public-files/core/public-file.module';
 import { ReservationModule } from '../reservation/reservation.module';
 import { RoomTypeModule } from '../room-type/room-type.module';
 import { RoomModule } from '../room/room.module';
@@ -56,7 +55,6 @@ import { AppService } from './app.service';
     UserModule,
     AuthenticationModule,
     LocalFilesModule,
-    PublicFileModule,
     CategoryModule,
     CityModule,
     CountryModule,

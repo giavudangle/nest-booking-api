@@ -7,12 +7,10 @@ import * as bcrypt from 'bcrypt'
 import { ILocalFileDto } from '../../local-files/dtos/local-file.dto';
 import { LocalFile } from '../../local-files/core/local-file.entity';
 import { LocalFilesService } from '../../local-files/core/local-file.service';
-import { PublicFileService } from '../../public-files/core/public-file.service';
 @Injectable()
 export class UserService {
   constructor(
     @Inject(LocalFilesService) private readonly localFilesService: LocalFilesService,
-    @Inject(PublicFileService) private readonly publicFilesService: PublicFileService,
     @InjectRepository(User) private readonly userRepository: Repository<User>,
     @InjectConnection() private readonly connection : Connection
   ) { }
@@ -92,7 +90,6 @@ export class UserService {
           ...user,
           avatar:null
         })
-        await this.publicFilesService.deletePublicFile(fileId)
         await queryRunner.commitTransaction();
       } catch(error){
         await queryRunner.rollbackTransaction();

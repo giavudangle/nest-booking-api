@@ -32,7 +32,7 @@ export class Facility {
 
     @ManyToMany(() => Room,room => room.facilities,{
         cascade:true,
-        lazy:true,
+        eager:false,
     })
     @JoinTable({
         name:'facilities-to-rooms',

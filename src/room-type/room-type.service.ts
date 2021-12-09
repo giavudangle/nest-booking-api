@@ -21,8 +21,8 @@ export class RoomTypeService {
     return await this.roomTypeRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} roomType`;
+  async findOne(id: number) {
+    return await this.roomTypeRepository.findOne(id);
   }
 
   update(id: number, updateRoomTypeDto: UpdateRoomTypeDto) {

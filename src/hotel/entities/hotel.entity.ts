@@ -3,6 +3,7 @@ import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGe
 import { Category } from "../../category/entities/category.entity";
 import { City } from "../../city/entities/city.entity";
 import { Facility } from "../../facility/entities/facility.entity";
+import { LocalFile } from "../../local-files/core/local-file.entity";
 import { Room } from "../../room/entities/room.entity";
 
 @Entity('hotels')
@@ -56,7 +57,8 @@ export class Hotel {
     @ManyToMany(() => Facility,facility => facility.hotels)
     facilities : Facility[]
 
-
+    @ManyToMany(() => LocalFile,localFile => localFile.hotels)
+    images : LocalFile[]
 
 
 }

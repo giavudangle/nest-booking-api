@@ -6,13 +6,12 @@ import { User } from '../entities/user.entity';
 import { ConfigService } from '@nestjs/config';
 import { LocalFilesService } from '../../local-files/core/local-file.service';
 import { LocalFile } from '../../local-files/core/local-file.entity';
-import { PublicFileService } from '../../public-files/core/public-file.service';
-import { PublicFile } from '../../public-files/core/public-file.entity';
+
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User,LocalFile,PublicFile])],
+  imports: [TypeOrmModule.forFeature([User,LocalFile,])],
   controllers: [UserController],
-  providers: [UserService,ConfigService,LocalFilesService,PublicFileService],
+  providers: [UserService,ConfigService,LocalFilesService,],
   exports: [UserService],
 })
 export class UserModule {}

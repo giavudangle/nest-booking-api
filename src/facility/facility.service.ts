@@ -26,6 +26,10 @@ export class FacilityService {
     return await this.facilityRepository.findOne(id)
   }
 
+  async findByIds(ids:Number[]){
+    return await this.facilityRepository.findByIds(ids);
+  }
+
 
   update(id: number, updateFacilityDto: UpdateFacilityDto) {
     return `This action updates a #${id} facility`;
